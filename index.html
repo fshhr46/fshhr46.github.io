@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Haoran Huang</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #ffffff;
+      --bg2:      #f5f5f5;
+      --text:     #1a1a1a;
+      --muted:    #555;
+      --accent:   #1565c0;
+      --border:   #e0e0e0;
+      --avatar-bg:#1565c0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg2);
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+      height: 52px;
+      gap: 28px;
+    }
+    .nav-brand {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--text);
+      margin-right: auto;
+    }
+    nav a {
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    nav a:hover { color: var(--accent); text-decoration: none; }
+
+    /* ── Layout ── */
+    .page {
+      max-width: 780px;
+      margin: 40px auto 80px;
+      padding: 0 20px;
+    }
+
+    /* ── Hero / Profile card ── */
+    .hero-card { margin-bottom: 24px; }
+
+    .hero-inner {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      min-width: 160px;
+    }
+
+    .avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--avatar-bg);
+      color: #fff;
+      font-size: 24px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+      flex-shrink: 0;
+    }
+
+    .hero-left h1 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .role {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 1px;
+    }
+
+    .location {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 10px;
+    }
+
+    .hero-right {
+      flex: 1;
+      border-left: 1px solid var(--border);
+      padding-left: 24px;
+    }
+
+    /* Contact icon row */
+    .contact-icons {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
+    }
+    .contact-icons a {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .contact-icons a:hover { color: var(--accent); text-decoration: none; }
+    .contact-icons svg {
+      width: 13px;
+      height: 13px;
+      flex-shrink: 0;
+      fill: currentColor;
+    }
+
+    /* ── Section cards ── */
+    .card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 32px 36px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+
+    .card h2 {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #888;
+      margin-bottom: 18px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── Summary ── */
+    .summary-text {
+      font-size: 15px;
+      color: #333;
+      line-height: 1.7;
+    }
+
+    /* ── Skills ── */
+    .skill-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+    .skill-row:last-child { margin-bottom: 0; }
+    .skill-cat {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--muted);
+      min-width: 130px;
+      padding-top: 2px;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .tag {
+      background: #e8f0fe;
+      color: #1a4fa3;
+      font-size: 12.5px;
+      padding: 3px 10px;
+      border-radius: 12px;
+    }
+
+    /* ── Education ── */
+    .edu-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .edu-school { font-weight: 600; font-size: 15px; }
+    .edu-year { font-size: 13px; color: var(--muted); }
+    .edu-degree { font-size: 14px; color: var(--muted); margin-top: 2px; }
+
+    /* ── Experience ── */
+    .job { margin-bottom: 28px; }
+    .job:last-child { margin-bottom: 0; }
+
+    .job-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 2px;
+    }
+    .job-company { font-weight: 700; font-size: 15.5px; }
+    .job-dates {
+      font-size: 13px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .job-title {
+      font-size: 13.5px;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+    .job ul {
+      padding-left: 18px;
+    }
+    .job li {
+      font-size: 14px;
+      margin-bottom: 7px;
+      line-height: 1.65;
+    }
+    .job-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 22px 0;
+    }
+
+    /* ── Projects ── */
+    .project { margin-bottom: 22px; }
+    .project:last-child { margin-bottom: 0; }
+
+    .proj-top {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      margin-bottom: 5px;
+    }
+    .proj-name {
+      font-weight: 700;
+      font-size: 15px;
+    }
+    .proj-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .proj-link {
+      font-size: 12.5px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--accent);
+    }
+    .proj-link svg { width: 12px; height: 12px; fill: currentColor; }
+    .proj-desc {
+      font-size: 14px;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 16px; gap: 16px; }
+      .page { padding: 0 12px; }
+      .hero-inner { flex-direction: column; }
+      .hero-right { border-left: none; border-top: 1px solid var(--border); padding-left: 0; padding-top: 16px; }
+      .hero-left { min-width: unset; }
+      .card { padding: 24px 20px; }
+      .skill-cat { min-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <span class="nav-brand">Haoran Huang</span>
+  <a href="#about">About</a>
+  <a href="#experience">Experience</a>
+  <a href="#projects">Projects</a>
+</nav>
+
+<div class="page">
+
+  <!-- Hero + About combined -->
+  <div class="card hero-card" id="about">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="avatar">HH</div>
+        <h1>Haoran Huang</h1>
+        <div class="role">Senior ML Engineer</div>
+        <div class="location">Seattle, WA</div>
+        <div class="contact-icons">
+          <a href="mailto:fshhr46@gmail.com">
+            <svg viewBox="0 0 20 20"><path d="M2 4a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V4zm2 0l6 5 6-5H4zm0 2.236V16h12V6.236l-6 5-6-5z"/></svg>
+            fshhr46@gmail.com
+          </a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <p class="summary-text">Senior Machine Learning Engineer specializing in large-scale distributed training systems and ML infrastructure, with 10+ years of experience scaling training systems to 100B+ parameters on 100+ GPU clusters. Builds PyTorch-based training platforms and develops large-scale recommendation models (e.g., generative ranking, user embedding models) leveraging Dynamic Embedding and HSTU.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Projects -->
+  <div class="card" id="projects">
+    <h2>Projects</h2>
+
+    <div class="project">
+      <div class="proj-top">
+        <span class="proj-name">my-suno</span>
+      </div>
+      <p class="proj-desc">Locally hosted music generation website powered by HeartMuLa. Streams AI-generated audio in real time via HLS, with a FastAPI backend, HTMX frontend, and support for custom prompt-driven generation on GPU.</p>
+    </div>
+
+    <div class="project">
+      <div class="proj-top">
+        <span class="proj-name">flash_attn_tf</span>
+      </div>
+      <p class="proj-desc">Flash Attention implementation for TensorFlow as a custom GPU op. Brings the memory-efficient, IO-aware attention algorithm to TF-based models, enabling significantly larger Transformer blocks and faster training.</p>
+    </div>
+
+    <div class="project">
+      <div class="proj-top">
+        <span class="proj-name">Pandora</span>
+      </div>
+      <p class="proj-desc">LLM fine-tuning framework for sensitive data classification. Enables enterprise teams to train and deploy classification models on private datasets, with pipelines for data ingestion, fine-tuning, and offline inference.</p>
+    </div>
+  </div>
+
+  <!-- Skills -->
+  <div class="card">
+    <h2>Skills</h2>
+    <div class="skill-row">
+      <span class="skill-cat">Languages</span>
+      <div class="skill-tags">
+        <span class="tag">Python</span><span class="tag">Java</span><span class="tag">Go</span><span class="tag">C++</span>
+      </div>
+    </div>
+    <div class="skill-row">
+      <span class="skill-cat">ML / Training</span>
+      <div class="skill-tags">
+        <span class="tag">PyTorch</span><span class="tag">PyTorch Lightning</span><span class="tag">TorchRec</span><span class="tag">TensorFlow</span>
+      </div>
+    </div>
+    <div class="skill-row">
+      <span class="skill-cat">Distributed Systems</span>
+      <div class="skill-tags">
+        <span class="tag">Model Parallelism</span><span class="tag">Parameter Server</span><span class="tag">DeepSpeed</span>
+      </div>
+    </div>
+    <div class="skill-row">
+      <span class="skill-cat">Cloud / Infra</span>
+      <div class="skill-tags">
+        <span class="tag">AWS</span><span class="tag">GCP</span><span class="tag">Vertex AI</span><span class="tag">GKE</span><span class="tag">Docker</span><span class="tag">Airflow</span>
+      </div>
+    </div>
+    <div class="skill-row">
+      <span class="skill-cat">Data Processing</span>
+      <div class="skill-tags">
+        <span class="tag">PySpark</span><span class="tag">Apache Beam</span><span class="tag">TFT</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Education -->
+  <div class="card">
+    <h2>Education</h2>
+    <div class="edu-row">
+      <span class="edu-school">University of Washington</span>
+      <span class="edu-year">2011 – 2015</span>
+    </div>
+    <div class="edu-degree">B.S. Computer Science &nbsp;·&nbsp; GPA 3.68 / 4.0 &nbsp;·&nbsp; Seattle, WA</div>
+  </div>
+
+  <!-- Experience -->
+  <div class="card" id="experience">
+    <h2>Experience</h2>
+
+    <div class="job">
+      <div class="job-top">
+        <span class="job-company">Snap Inc.</span>
+        <span class="job-dates">2023 – 2026</span>
+      </div>
+      <div class="job-title">Senior Machine Learning Engineer, ML Platform / Recsys &nbsp;·&nbsp; Seattle, WA</div>
+      <ul>
+        <li><strong>Dynamic Embedding</strong> — Led end-to-end development from TensorFlow prototype (TFRA) to PyTorch production (TorchRec + NVIDIA HKV), scaling embedding tables from <strong>10B to 100B+ parameters</strong> by eliminating vocabulary materialization in data preprocessing. Designed LRU/LFU eviction and admission policies, achieving full metric parity while reducing cost by <strong>50% ($0.5M per year/model)</strong>.</li>
+        <li><strong>PyTorch Training Platform</strong> — Led productionization of the first PyTorch-based model with a scalable system supporting incremental training, fallback recovery, and distributed checkpointing (resharding) on Vertex AI/GKE. Established CI/CD pipelines bridging research to production.</li>
+        <li><strong>PyTorch Training Optimization</strong> — Improved throughput by <strong>3×</strong> via memory optimization (HBM fragmentation), data/embedding prefetching, and hardware upgrades (A100 → H100, GCS FUSE), cutting training cost by <strong>80% ($2M per year/model)</strong>.</li>
+        <li><strong>TensorFlow Training Optimization</strong> — Implemented shared embedding lookup (<strong>1.7× embedding throughput, 1.26× overall speedup</strong>); integrated FlashAttention via custom GPU ops (first in Snap), achieving up to <strong>5× speedup</strong> and enabling <strong>2.5× larger Transformer blocks</strong>.</li>
+        <li>Built a <strong>TensorFlow feature importance pipeline</strong> adopted across ranking models.</li>
+      </ul>
+    </div>
+
+    <hr class="job-divider">
+
+    <div class="job">
+      <div class="job-top">
+        <span class="job-company">Sudo Privacy</span>
+        <span class="job-dates">2022 – 2023</span>
+      </div>
+      <div class="job-title">Senior Machine Learning Engineer &nbsp;·&nbsp; Beijing, China</div>
+      <ul>
+        <li>Built an <strong>on-premise LLM fine-tuning platform</strong> for enterprise data, enabling secure training on private datasets. Designed end-to-end pipelines for model fine-tuning, management, and offline inference supporting sensitive data classification.</li>
+      </ul>
+    </div>
+
+    <hr class="job-divider">
+
+    <div class="job">
+      <div class="job-top">
+        <span class="job-company">Amazon Alexa ASR</span>
+        <span class="job-dates">2020 – 2022</span>
+      </div>
+      <div class="job-title">Senior Software Engineer / Machine Learning Engineer &nbsp;·&nbsp; Seattle, WA</div>
+      <ul>
+        <li>Led <strong>early adoption of PyTorch + DeepSpeed</strong> for model-parallel training in ASR, scaling acoustic models to <strong>1B+ parameters (10× larger than 2019 production models)</strong>.</li>
+        <li>Built a <strong>unified, configuration-driven ASR training platform</strong> standardizing workflows across global teams (US/EU/IN) for <strong>16+ production languages</strong> via JSON/YAML-based configurations.</li>
+      </ul>
+    </div>
+
+    <hr class="job-divider">
+
+    <div class="job">
+      <div class="job-top">
+        <span class="job-company">Amazon Alexa ASR</span>
+        <span class="job-dates">2017 – 2020</span>
+      </div>
+      <div class="job-title">Software Engineer II, ML Infrastructure &nbsp;·&nbsp; Seattle, WA</div>
+      <ul>
+        <li>Scaled ASR data processing (PySpark) from <strong>100K → 10M hours</strong>, increasing throughput to <strong>1M+ samples/sec</strong> and reducing runtime from <strong>2 weeks to 3 days</strong>.</li>
+        <li>Re-architected training data pipelines into Airflow-based DAGs enabling <strong>parallel, fault-tolerant processing</strong> and introduced CI/CD pipelines for model development.</li>
+      </ul>
+    </div>
+
+    <hr class="job-divider">
+
+    <div class="job">
+      <div class="job-top">
+        <span class="job-company">Amazon Restaurants</span>
+        <span class="job-dates">2015 – 2017</span>
+      </div>
+      <div class="job-title">Software Engineer I &nbsp;·&nbsp; Seattle, WA</div>
+      <ul>
+        <li>Built backend services using AWS (S3, SNS, SQS, DynamoDB) supporting <strong>100+ cities and 10K+ restaurants</strong>.</li>
+      </ul>
+    </div>
+  </div>
+
+
+</div>
+</body>
+</html>
